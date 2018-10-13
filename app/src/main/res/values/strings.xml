@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Notes</string>
+    <string name="mailET">E-Mail</string>
+    <string name="passwordET">Password</string>
+    <string name="loginBTN">Login</string>
+    <string name="minimum_password">minumum 6 karakter</string>
+    <string name="auth_failed">Giriş başarısız</string>
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "642558046613",
+    "firebase_url": "https://calymessenger.firebaseio.com",
+    "project_id": "calymessenger",
+    "storage_bucket": "calymessenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642558046613:android:a131c7adfd18897e",
+        "android_client_info": {
+          "package_name": "com.example.yube.calymessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642558046613-l8t64q9v6nfrv6n1upheaepdveh61khq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yube.calymessenger",
+            "certificate_hash": "343ccd8d0d3bba4f876c58d7b855e3fc3fdd0e36"
+          }
+        },
+        {
+          "client_id": "642558046613-me0nh62817ltplrr675ig954v6j2fsih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5eneJpiqGa7KrkgYcsQapq0oAo478u0U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642558046613-me0nh62817ltplrr675ig954v6j2fsih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
