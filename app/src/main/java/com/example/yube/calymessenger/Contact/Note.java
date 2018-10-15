@@ -1,4 +1,4 @@
-package com.example.yube.calyNotes.Contact;
+package com.example.yube.calymessenger.Contact;
 
 public class Note {
 

@@ -41,16 +41,34 @@
                 android:id="@+id/passwordET"
 
                 />
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_gravity="right"
-                android:layout_marginRight="20dp"
-                android:text="@string/loginBTN"
-                android:id="@+id/loginBtn"
-                android:textColor="#fff"
-                android:background="#FFEB3B10"
-                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="right">
+
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/title_activity_signup"
+                    android:id="@+id/registerBtn"
+                    android:textColor="#fff"
+                    android:background="#FFEB3B10" />
+
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/loginBTN"
+                    android:id="@+id/loginBtn"
+                    android:textColor="#fff"
+                    android:background="#FFEB3B10" />
+            </LinearLayout>
+
         </LinearLayout>
 
 

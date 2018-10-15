@@ -1,18 +1,20 @@
-package com.example.yube.calyNotes;
+package com.example.yube.calymessenger;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.Button;
 
-import com.example.yube.calyNotes.Contact.Note;
-import com.example.yube.calymessenger.R;
+import com.example.yube.calymessenger.Contact.Note;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private Button exitBTN;
   //  private TextView testET;
-public WebView mebis;
+//public WebView mebis;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,35 +34,44 @@ public WebView mebis;
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
-      //  exitBTN = findViewById(R.id.logoutBtn);
+        exitBTN = findViewById(R.id.logoutBtn);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.note_recyc);
 
         ArrayList noteList  = new ArrayList<>();
-       noteAdapter adapter = new noteAdapter(this, noteList);
+        noteAdapter adapter = new noteAdapter(this, noteList);
 
-        noteList.add(new Note());
-        noteList.add(new Note());
-        noteList.add(new Note());
-        noteList.add(new Note());
+        noteList.add(new Note(1, "test", "test test test test test 123", "14-10-2018", "warning", 1));
+
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
+        exitBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
 
 
-
-
-
-
-
-
-
-
-
+    {
 
 
 
@@ -99,16 +110,7 @@ mebis=findViewById(R.id.webviev);
 
 mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
 */
-      /*  exitBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.signOut();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-*/
-    }
+
 /*
     private class jsoup extends AsyncTask<Void, Void, Void> {
         String text="İnternet bağlantınız kopmuş yahut kurbağa hızında :(";
@@ -147,4 +149,5 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
 
 
     }*/
+    }//silinecek
 }

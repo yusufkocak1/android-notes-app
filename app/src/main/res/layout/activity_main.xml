@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yube.calyNotes.MainActivity"
+    tools:context=".MainActivity"
     android:orientation="vertical"
     android:background="#FFA000">
 
@@ -56,26 +56,39 @@ android:elevation="3dp"
         android:id="@+id/note_recyc"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_scrollFlags="scroll|enterAlways"
         >
 
     </android.support.v7.widget.RecyclerView>
-<!--<include layout="@layout/not_cardlayout"></include>-->
 
 
-<!--
-    <LinearLayout
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_margin="16dp" />
+
+
+    <!--<include layout="@layout/not_cardlayout"></include>-->
+
+
+    <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            >
+    <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:id="@+id/webviev"
         >
-<WebView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/webviev"
-    >
 
-</WebView>
+    </WebView>
 
 
-    </LinearLayout>-->
+        </LinearLayout>-->
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.yube.calyNotes;
+package com.example.yube.calymessenger;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.yube.calymessenger.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 private FirebaseAuth mAuth;
 private Button loginBtn;
+    private Button signupBtn;
 private EditText emailET,passwordET;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +32,19 @@ private EditText emailET,passwordET;
         setContentView(R.layout.activity_login);
 
         loginBtn=findViewById(R.id.loginBtn);
+        signupBtn = findViewById(R.id.registerBtn);
+
         emailET=findViewById(R.id.emailET);
         passwordET=findViewById(R.id.passwordET);
 
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
 
+            }
+        });
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

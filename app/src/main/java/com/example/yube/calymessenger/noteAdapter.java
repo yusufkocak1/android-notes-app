@@ -1,4 +1,4 @@
-package com.example.yube.calyNotes;
+package com.example.yube.calymessenger;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.yube.calyNotes.Contact.Note;
-import com.example.yube.calymessenger.R;
+import com.example.yube.calymessenger.Contact.Note;
 
 import java.util.List;
 
@@ -22,11 +21,16 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.MyViewHolder> 
     private List<Note> noteList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, count;
+        public TextView headTV, contentTV, dateTV;
         public ImageView thumbnail, overflow;
 
         public MyViewHolder(View view) {
             super(view);
+
+            headTV = view.findViewById(R.id.headTV);
+            contentTV = view.findViewById(R.id.contentTV);
+            dateTV = view.findViewById(R.id.dateTV);
+
            // title = (TextView) view.findViewById(R.id.title);
           //  count = (TextView) view.findViewById(R.id.count);
           //  thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
@@ -50,9 +54,13 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Note album = noteList.get(position);
+        Note note = noteList.get(position);
       //  holder.title.setText(album.getName());
        // holder.count.setText(album.getNumOfSongs() + " songs");
+
+        holder.headTV.setText(note.getHead());
+        holder.contentTV.setText(note.getContent());
+        holder.dateTV.setText(note.getDate());
 
         // loading album cover using Glide library
        // Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
