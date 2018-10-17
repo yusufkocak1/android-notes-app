@@ -1,6 +1,7 @@
 package com.example.yube.calymessenger;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yube.calymessenger.Contact.Note;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +31,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private Button exitBTN;
 
-  //  private TextView testET;
+    //  private TextView testET;
 //public WebView mebis;
     @SuppressLint("WrongViewCast")
     @Override
@@ -40,19 +42,39 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        final ProgressDialog progDailog = ProgressDialog.show(this, "Loading", "Please wait...", true);
+        progDailog.setCancelable(false);
 
 
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("notes");
+        final DatabaseReference userref = database.getReference("users");
 
+        final String[] name = {""};
+        userref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds:dataSnapshot.getChildren()
+                     ) {
+                    if (ds.child("email").getValue().toString().equals(mAuth.getCurrentUser().getEmail())){
+                     name[0] =ds.child("name").getValue().toString();
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         exitBTN = findViewById(R.id.logoutBtn);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Üzgünüm dostum henüz not alamıyorsun Biliyorum çok saçma :D", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -60,19 +82,24 @@ public class MainActivity extends AppCompatActivity {
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.note_recyc);
 
-        final ArrayList noteList  = new ArrayList<>();
+        final ArrayList noteList = new ArrayList<>();
         final noteAdapter adapter = new noteAdapter(this, noteList);
 
-        
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot ds:dataSnapshot.getChildren()
-                     ) {
-                    noteList.add(new Note(1, ds.child("head").getValue(String.class), ds.child("content").getValue(String.class), ds.child("date").getValue(String.class), ds.child("type").getValue(String.class), 1));
-                adapter.notifyDataSetChanged();
+                for (DataSnapshot ds : dataSnapshot.getChildren()
+                        ) {
+
+
+                    if (ds.child("email").getValue().toString().equals(mAuth.getCurrentUser().getEmail())) {
+                        noteList.add(new Note(1, ds.child("head").getValue(String.class), ds.child("content").getValue(String.class), ds.child("date").getValue(String.class), ds.child("type").getValue(String.class), 1));
+                        adapter.notifyDataSetChanged();
+                   }
+                    progDailog.dismiss();
+
                 }
 
             }
@@ -82,8 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-         
 
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
