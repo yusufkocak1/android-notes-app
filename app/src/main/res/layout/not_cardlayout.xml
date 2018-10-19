@@ -33,7 +33,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="#4CAF50">
+                    android:background="#FFF">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                         android:gravity="center"
                         android:text="Lorem Ipsum"
                         android:id="@+id/headTV"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#000" />
 
                 </LinearLayout>
 

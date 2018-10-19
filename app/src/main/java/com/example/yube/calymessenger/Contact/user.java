@@ -2,23 +2,15 @@ package com.example.yube.calymessenger.Contact;
 
 public class user {
 
-    private int id;
     private String email;
     private String name;
 
-    public user(int id, String email, String name) {
-        this.id = id;
+    public user(String name, String email) {
+
         this.email = email;
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;

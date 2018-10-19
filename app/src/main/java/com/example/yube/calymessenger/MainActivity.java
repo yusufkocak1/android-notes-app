@@ -1,6 +1,7 @@
 package com.example.yube.calymessenger;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -15,7 +16,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yube.calymessenger.Contact.Note;
@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
         userref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds:dataSnapshot.getChildren()
-                     ) {
-                    if (ds.child("email").getValue().toString().equals(mAuth.getCurrentUser().getEmail())){
-                     name[0] =ds.child("name").getValue().toString();
+                for (DataSnapshot ds : dataSnapshot.getChildren()
+                        ) {
+                    if (ds.child("email").getValue().toString().equals(mAuth.getCurrentUser().getEmail())) {
+                        name[0] = ds.child("name").getValue().toString();
 
                     }
                 }
@@ -74,8 +74,12 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Üzgünüm dostum henüz not alamıyorsun Biliyorum çok saçma :D", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+
+                addDialog dialog = new addDialog();
+                dialog.showdialog(mAuth.getCurrentUser().getEmail(),view);
+//                Snackbar.make(view, "Üzgünüm dostum henüz not alamıyorsun Biliyorum çok saçma :D", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
@@ -84,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
         final ArrayList noteList = new ArrayList<>();
         final noteAdapter adapter = new noteAdapter(this, noteList);
-
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     if (ds.child("email").getValue().toString().equals(mAuth.getCurrentUser().getEmail())) {
                         noteList.add(new Note(1, ds.child("head").getValue(String.class), ds.child("content").getValue(String.class), ds.child("date").getValue(String.class), ds.child("type").getValue(String.class), 1));
                         adapter.notifyDataSetChanged();
-                   }
+                    }
                     progDailog.dismiss();
 
                 }
@@ -207,4 +210,59 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
 
     }*/
     }//silinecek
+
+    class addDialog {
+
+        Button saveBTN;
+        Button cancelBTN;
+
+
+        public boolean showdialog(String email, final View v) {
+            final Dialog dialog = new Dialog(MainActivity.this);
+
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(true);
+            dialog.setContentView(R.layout.note_add_alert);
+
+
+
+
+
+            saveBTN=dialog.findViewById(R.id.alertaddBTN);
+            cancelBTN = dialog.findViewById(R.id.alertcancelBTN);
+
+
+            saveBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (saveNote()){
+                        Snackbar.make(v, "your note has been saved", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        dialog.dismiss();
+                    }
+                    else
+                        Snackbar.make(view, "your note could not be saved", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+
+                }
+            });
+
+            cancelBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+
+                }
+            });
+
+            dialog.show();
+
+            return false;
+        }
+
+        private boolean saveNote() {
+            return false;
+        }
+    }
+
 }
