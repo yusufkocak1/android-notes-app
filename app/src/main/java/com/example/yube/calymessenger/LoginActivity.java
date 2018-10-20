@@ -18,10 +18,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-private FirebaseAuth mAuth;
-private Button loginBtn;
+    private FirebaseAuth mAuth;
+    private Button loginBtn;
     private Button signupBtn;
-private EditText emailET,passwordET;
+    private EditText emailET, passwordET;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +32,11 @@ private EditText emailET,passwordET;
 
         setContentView(R.layout.activity_login);
 
-        loginBtn=findViewById(R.id.loginBtn);
+        loginBtn = findViewById(R.id.loginBtn);
         signupBtn = findViewById(R.id.registerBtn);
 
-        emailET=findViewById(R.id.emailET);
-        passwordET=findViewById(R.id.passwordET);
+        emailET = findViewById(R.id.emailET);
+        passwordET = findViewById(R.id.passwordET);
 
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,33 +49,33 @@ private EditText emailET,passwordET;
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String email,password;
-                email=emailET.getText().toString();
-                password=passwordET.getText().toString();
-               // final ProgressBar progressBar;
+                final String email, password;
+                email = emailET.getText().toString();
+                password = passwordET.getText().toString();
+                // final ProgressBar progressBar;
 //progressBar=findViewById(R.id.progressBar);
-                mAuth.signInWithEmailAndPassword(email,password)
+                mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-               //         progressBar.setVisibility(true);
-                        if (!task.isSuccessful()) {
-                            // there was an error
-                            if (password.length() < 6) {
-                                passwordET.setError(getString(R.string.minimum_password));
-                            } else {
-                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+                                //         progressBar.setVisibility(true);
+                                if (!task.isSuccessful()) {
+                                    // there was an error
+                                    if (password.length() < 6) {
+                                        passwordET.setError(getString(R.string.minimum_password));
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
                             }
-                        } else {
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                });
+                        });
             }
         });
 

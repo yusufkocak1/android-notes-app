@@ -12,13 +12,16 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.yube.calymessenger.Contact.Note;
+import com.example.yube.calymessenger.Contact.user;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +29,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private Button exitBTN;
@@ -70,24 +76,12 @@ public class MainActivity extends AppCompatActivity {
         });
         exitBTN = findViewById(R.id.logoutBtn);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                addDialog dialog = new addDialog();
-                dialog.showdialog(mAuth.getCurrentUser().getEmail(),view);
-//                Snackbar.make(view, "Üzgünüm dostum henüz not alamıyorsun Biliyorum çok saçma :D", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-            }
-        });
-
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.note_recyc);
 
         final ArrayList noteList = new ArrayList<>();
         final noteAdapter adapter = new noteAdapter(this, noteList);
+
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -98,14 +92,20 @@ public class MainActivity extends AppCompatActivity {
 
 
                     if (ds.child("email").getValue().toString().equals(mAuth.getCurrentUser().getEmail())) {
-                        noteList.add(new Note(1, ds.child("head").getValue(String.class), ds.child("content").getValue(String.class), ds.child("date").getValue(String.class), ds.child("type").getValue(String.class), 1));
+
+                        noteList.add(new Note(ds.child("head").getValue(String.class), ds.child("content").getValue(String.class), ds.child("date").getValue(String.class), ds.child("type").getValue(String.class), ds.child("email").getValue(String.class)));
+
+
+
                         adapter.notifyDataSetChanged();
                     }
-                    progDailog.dismiss();
 
                 }
+                progDailog.dismiss();
+
 
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -113,6 +113,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                addDialog dialog = new addDialog();
+                dialog.showdialog(mAuth.getCurrentUser().getEmail(), view);
+//                Snackbar.make(view, "Üzgünüm dostum henüz not alamıyorsun Biliyorum çok saçma :D", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+
+//                adapter.notifyDataSetChanged();
+
+            }
+        });
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -215,6 +232,8 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
 
         Button saveBTN;
         Button cancelBTN;
+        EditText headtext;
+        EditText contenttext;
 
 
         public boolean showdialog(String email, final View v) {
@@ -224,23 +243,25 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
             dialog.setCancelable(true);
             dialog.setContentView(R.layout.note_add_alert);
 
-
-
-
-
-            saveBTN=dialog.findViewById(R.id.alertaddBTN);
+            headtext = dialog.findViewById(R.id.alertheadET);
+            contenttext = dialog.findViewById(R.id.alertcontentET);
+            saveBTN = dialog.findViewById(R.id.alertaddBTN);
             cancelBTN = dialog.findViewById(R.id.alertcancelBTN);
 
 
             saveBTN.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (saveNote()){
+                    if (saveNote()) {
                         Snackbar.make(v, "your note has been saved", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+
                         dialog.dismiss();
-                    }
-                    else
+
+                        finish();
+                        startActivity(getIntent());
+
+                    } else
                         Snackbar.make(view, "your note could not be saved", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
 
@@ -261,7 +282,24 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
         }
 
         private boolean saveNote() {
-            return false;
+            FirebaseDatabase mFirebaseInstance = FirebaseDatabase.getInstance();
+            String noteId = "";
+            DatabaseReference mFirebaseDatabase = mFirebaseInstance.getReference("notes");
+
+            if (TextUtils.isEmpty(noteId)) {
+                noteId = mFirebaseDatabase.push().getKey();
+            }
+            Date date = new Date();
+            CharSequence s = android.text.format.DateFormat.format("MM/dd/yyyy", date.getTime());
+            //DateFormat.getDateInstance(DateFormat.SHORT).format(date);
+
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            Note note = new Note("" + headtext.getText().toString(), contenttext.getText().toString(), s.toString(), "warn", auth.getCurrentUser().getEmail().toString());
+
+            mFirebaseDatabase.child(noteId).setValue(note);
+            return true;
+
+
         }
     }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.yube.calymessenger.Contact.Note;
@@ -57,7 +58,16 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.MyViewHolder> 
         Note note = noteList.get(position);
       //  holder.title.setText(album.getName());
        // holder.count.setText(album.getNumOfSongs() + " songs");
-
+//if (note.getHead().equals("")){
+//    LinearLayout.LayoutParams lastTxtParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//    lastTxtParams.setMargins(0, -40, 0, 40);
+//
+//    holder.contentTV.setLayoutParams(lastTxtParams);
+//    holder.contentTV.invalidate();
+//    //lastTxtParams.height=0;
+//    holder.headTV.setVisibility(false);
+//
+//}
         holder.headTV.setText(note.getHead());
         holder.contentTV.setText(note.getContent());
         holder.dateTV.setText(note.getDate());

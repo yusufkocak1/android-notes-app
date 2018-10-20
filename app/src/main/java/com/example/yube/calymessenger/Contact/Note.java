@@ -2,30 +2,24 @@ package com.example.yube.calymessenger.Contact;
 
 public class Note {
 
-    private int id;
+
     private String head;
     private String content;
     private String date;
     private String type;
 
-    int userid;
+    private String email;
 
-    public Note(int id, String head, String content, String date, String type, int userid) {
-        this.id = id;
+    public Note( String head, String content, String date, String type, String userEmail) {
+
         this.head = head;
         this.content = content;
         this.date = date;
         this.type = type;
-        this.userid = userid;
+        this.email = userEmail;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getHead() {
         return head;
@@ -59,11 +53,11 @@ public class Note {
         this.type = type;
     }
 
-    public int getUserid() {
-        return userid;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
