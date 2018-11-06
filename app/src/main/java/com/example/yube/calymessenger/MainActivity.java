@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (ds.child("email").getValue().toString().equals(mAuth.getCurrentUser().getEmail())) {
 
-                        noteList.add(new Note(ds.child("content").getValue(String.class), ds.child("date").getValue(String.class), ds.child("type").getValue(String.class), ds.child("email").getValue(String.class)));
+                        noteList.add(new Note(ds.getKey(),ds.child("content").getValue(String.class), ds.child("date").getValue(String.class), ds.child("type").getValue(String.class), ds.child("email").getValue(String.class)));
 
 
 
@@ -127,7 +127,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 addDialog dialog = new addDialog();
-                dialog.showdialog(mAuth.getCurrentUser().getEmail(), view);
+               if( dialog.showdialog(mAuth.getCurrentUser().getEmail(), view)){
+
+               }
 //                Snackbar.make(view, "Üzgünüm dostum henüz not alamıyorsun Biliyorum çok saçma :D", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 
@@ -342,7 +344,7 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
             //DateFormat.getDateInstance(DateFormat.SHORT).format(date);
 
             FirebaseAuth auth = FirebaseAuth.getInstance();
-            Note note = new Note(contenttext.getText().toString(), getDate(), "warn", auth.getCurrentUser().getEmail().toString());
+            Note note = new Note(noteId,contenttext.getText().toString(), getDate(), "warn", auth.getCurrentUser().getEmail().toString());
 
             mFirebaseDatabase.child(noteId).setValue(note);
             return true;
@@ -357,6 +359,5 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
         return s.toString();
     }
     }
-
 
 }
