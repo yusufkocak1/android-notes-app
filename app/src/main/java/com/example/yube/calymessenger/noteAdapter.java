@@ -1,10 +1,14 @@
 package com.example.yube.calymessenger;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,13 +26,13 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.MyViewHolder> 
     private List<Note> noteList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView headTV, contentTV, dateTV;
+        public TextView  contentTV, dateTV;
         public ImageView thumbnail, overflow;
 
         public MyViewHolder(View view) {
             super(view);
 
-            headTV = view.findViewById(R.id.headTV);
+            //headTV = view.findViewById(R.id.headTV);
             contentTV = view.findViewById(R.id.contentTV);
             dateTV = view.findViewById(R.id.dateTV);
 
@@ -36,6 +40,18 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.MyViewHolder> 
           //  count = (TextView) view.findViewById(R.id.count);
           //  thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
           //  overflow = (ImageView) view.findViewById(R.id.overflow);
+
+            final deleteAlert deletealert=new deleteAlert();
+
+            view.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    Snackbar.make(view, "long pressed", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    deletealert.showdialog("sdfg");
+                    return false;
+                }
+            });
         }
     }
 
@@ -68,7 +84,7 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.MyViewHolder> 
 //    holder.headTV.setVisibility(false);
 //
 //}
-        holder.headTV.setText(note.getHead());
+       // holder.headTV.setText(note.getHead());
         holder.contentTV.setText(note.getContent());
         holder.dateTV.setText(note.getDate());
 
@@ -92,4 +108,28 @@ public class noteAdapter extends RecyclerView.Adapter<noteAdapter.MyViewHolder> 
     public int getItemCount() {
         return noteList.size();
     }
+
+
+
+
+
+    public class deleteAlert {
+
+
+        public boolean showdialog(String note_id) {
+            final Dialog dialog = new Dialog(mContext);
+
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(true);
+            dialog.setContentView(R.layout.delete_alert);
+
+
+            dialog.show();
+
+            return false;
+        }
+
+
+    }
+
 }

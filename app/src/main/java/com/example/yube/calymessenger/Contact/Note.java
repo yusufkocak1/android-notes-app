@@ -3,16 +3,15 @@ package com.example.yube.calymessenger.Contact;
 public class Note {
 
 
-    private String head;
     private String content;
     private String date;
     private String type;
 
     private String email;
 
-    public Note( String head, String content, String date, String type, String userEmail) {
+    public Note( String content, String date, String type, String userEmail) {
 
-        this.head = head;
+
         this.content = content;
         this.date = date;
         this.type = type;
@@ -21,13 +20,7 @@ public class Note {
 
 
 
-    public String getHead() {
-        return head;
-    }
 
-    public void setHead(String head) {
-        this.head = head;
-    }
 
     public String getContent() {
         return content;

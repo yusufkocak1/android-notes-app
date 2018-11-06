@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (ds.child("email").getValue().toString().equals(mAuth.getCurrentUser().getEmail())) {
 
-                        noteList.add(new Note(ds.child("head").getValue(String.class), ds.child("content").getValue(String.class), ds.child("date").getValue(String.class), ds.child("type").getValue(String.class), ds.child("email").getValue(String.class)));
+                        noteList.add(new Note(ds.child("content").getValue(String.class), ds.child("date").getValue(String.class), ds.child("type").getValue(String.class), ds.child("email").getValue(String.class)));
 
 
 
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
@@ -252,7 +253,6 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
 
         Button saveBTN;
         Button cancelBTN;
-        EditText headtext;
         EditText contenttext;
 
 
@@ -263,7 +263,7 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
             dialog.setCancelable(true);
             dialog.setContentView(R.layout.note_add_alert);
 
-            headtext = dialog.findViewById(R.id.alertheadET);
+           // headtext = dialog.findViewById(R.id.alertheadET);
             contenttext = dialog.findViewById(R.id.alertcontentET);
             saveBTN = dialog.findViewById(R.id.alertaddBTN);
             cancelBTN = dialog.findViewById(R.id.alertcancelBTN);
@@ -314,7 +314,7 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
             //DateFormat.getDateInstance(DateFormat.SHORT).format(date);
 
             FirebaseAuth auth = FirebaseAuth.getInstance();
-            Note note = new Note("" + headtext.getText().toString(), contenttext.getText().toString(), s.toString(), "warn", auth.getCurrentUser().getEmail().toString());
+            Note note = new Note(contenttext.getText().toString(), s.toString(), "warn", auth.getCurrentUser().getEmail().toString());
 
             mFirebaseDatabase.child(noteId).setValue(note);
             return true;

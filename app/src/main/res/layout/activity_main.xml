@@ -1,85 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:background="#F5F5F5"
     android:orientation="vertical"
-    android:background="#F5F5F5">
+    tools:context=".MainActivity">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:background="@drawable/navbarlayout"
-    android:orientation="horizontal"
-android:elevation="3dp"
-    android:paddingLeft="5dp"
-
-    >
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:layout_weight="16"
-    android:text="my notes"
-    android:textSize="24dp"
-    android:layout_gravity="right"
-    android:layout_marginLeft="10dp"
-    android:textColor="#222"
-    />
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="|"
-        android:layout_weight="60"
-        android:textSize="24dp"
-        android:layout_gravity="right"
-        android:textColor="#222"/>
-    <Button
-        android:id="@+id/logoutBtn"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
-        android:layout_gravity="right"
-        android:textSize="16dp"
-        android:background="@android:color/transparent"
-        android:text="Log Out"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1"
+        android:background="@drawable/navbarlayout"
+        android:elevation="3dp"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
 
-        android:textColor="#222" />
-</LinearLayout>
-<!---->
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="16"
+            android:text="my notes"
+            android:textColor="#222"
+            android:textSize="24dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:layout_weight="60"
+            android:text="|"
+            android:textColor="#222"
+            android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="Log Out"
+            android:textColor="#222"
+
+            android:textSize="16dp" />
+    </LinearLayout>
+    <!---->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/note_recyc"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="20dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_scrollFlags="scroll|enterAlways"
-        >
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/note_recyc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="right">
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="20dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_margin="16dp"
-        android:src="@android:drawable/ic_menu_edit"
-/>
-</LinearLayout>
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:layout_margin="16dp"
+                android:src="@android:drawable/ic_menu_edit"
+                app:backgroundTint="#222" />
+        </LinearLayout>
     </RelativeLayout>
     <!--<include layout="@layout/not_cardlayout"></include>-->
 
