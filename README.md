@@ -1,7 +1,5 @@
 Online Notlar alabileceğiniz muhteşem bir uygulama.
 
-[![image](https://hizliresim.com/b6Oazj)
-[![image](https://i.hizliresim.com/5yA35d.png))
-[![image](https://i.hizliresim.com/0zPaML.png)
-
-![Alex](https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQm_5f3CAKzVEgNO6PVvm3zTRI4eLrqh4gw0iRwx496wllsCWRVtw)
+[![IC9r1.md.png](https://i.imgyukle.com/2018/11/06/IC9r1.md.png)](https://imgyukle.com/i/IC9r1)
+[![IC4bA.md.png](https://i.imgyukle.com/2018/11/06/IC4bA.md.png)](https://imgyukle.com/i/IC4bA)
+[![ICbGH.md.png](https://i.imgyukle.com/2018/11/06/ICbGH.md.png)](https://imgyukle.com/i/ICbGH)
