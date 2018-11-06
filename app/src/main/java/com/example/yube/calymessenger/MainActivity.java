@@ -3,6 +3,9 @@ package com.example.yube.calymessenger;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -20,6 +23,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yube.calymessenger.Contact.Note;
@@ -253,8 +257,10 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
 
         Button saveBTN;
         Button cancelBTN;
+        Button copyBTN;
+        Button pasteBTN;
         EditText contenttext;
-
+        TextView dateTV;
 
         public boolean showdialog(String email, final View v) {
             final Dialog dialog = new Dialog(MainActivity.this);
@@ -267,7 +273,31 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
             contenttext = dialog.findViewById(R.id.alertcontentET);
             saveBTN = dialog.findViewById(R.id.alertaddBTN);
             cancelBTN = dialog.findViewById(R.id.alertcancelBTN);
+            copyBTN=dialog.findViewById(R.id.alertCopyBTN);
+            pasteBTN=dialog.findViewById(R.id.alertPasteBTN);
+            dateTV=dialog.findViewById(R.id.alertDateTV);
 
+            dateTV.setText(getDate());
+
+            pasteBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    try {
+                        contenttext.setText(contenttext.getText().toString()+clipboard.getPrimaryClip().getItemAt(0).getText());
+                    } catch (Exception e) {
+                        return;
+                    }
+                }
+            });
+            copyBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("text", contenttext.getText());
+                    clipboard.setPrimaryClip(clip);
+                }
+            });
 
             saveBTN.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -309,18 +339,24 @@ mebis.loadUrl("https://mebis.medipol.edu.tr/DersProgramlari?pProgramOID=2");
             if (TextUtils.isEmpty(noteId)) {
                 noteId = mFirebaseDatabase.push().getKey();
             }
-            Date date = new Date();
-            CharSequence s = android.text.format.DateFormat.format("MM/dd/yyyy", date.getTime());
             //DateFormat.getDateInstance(DateFormat.SHORT).format(date);
 
             FirebaseAuth auth = FirebaseAuth.getInstance();
-            Note note = new Note(contenttext.getText().toString(), s.toString(), "warn", auth.getCurrentUser().getEmail().toString());
+            Note note = new Note(contenttext.getText().toString(), getDate(), "warn", auth.getCurrentUser().getEmail().toString());
 
             mFirebaseDatabase.child(noteId).setValue(note);
             return true;
 
 
         }
+
+    public String getDate(){
+        Date date = new Date();
+        CharSequence s = android.text.format.DateFormat.format("MM-dd-yyyy", date.getTime());
+
+        return s.toString();
     }
+    }
+
 
 }

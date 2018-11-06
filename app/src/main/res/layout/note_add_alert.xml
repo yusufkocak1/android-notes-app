@@ -4,6 +4,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingTop="10dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:gravity="right">
+
+          <TextView
+              android:id="@+id/alertDateTV"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="15"
+              android:textColor="#222"
+              android:text="06-11-2018"
+              android:gravity="left"
+              android:textSize="18dp"
+              android:layout_marginLeft="5dp" />
+            <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:id="@+id/alertPasteBTN"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/baseline_flip_to_front_black_18dp"/>
+            <Button
+                android:layout_width="22dp"
+                android:layout_weight="1"
+                android:id="@+id/alertCopyBTN"
+                android:layout_height="22dp"
+                android:background="@drawable/baseline_file_copy_black_18dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#222"></LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
