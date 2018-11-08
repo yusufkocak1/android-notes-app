@@ -43,9 +43,8 @@ int position;
             //  thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             //  overflow = (ImageView) view.findViewById(R.id.overflow);
 
-            final deleteAlert deletealert = new deleteAlert();
 
-            view.setOnLongClickListener(new View.OnLongClickListener() {
+          /*  view.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
                     Snackbar.make(view, "long pressed", Snackbar.LENGTH_LONG)
@@ -55,7 +54,7 @@ int position;
 
                     return false;
                 }
-            });
+            });*/
         }
     }
 
@@ -93,6 +92,7 @@ int position;
         holder.contentTV.setText(note.getContent());
         holder.dateTV.setText(note.getDate());
 
+
         // loading album cover using Glide library
         // Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
 
@@ -115,48 +115,6 @@ int position;
     }
 
 
-    public class deleteAlert {
-
-        Button yes;
-        Button no;
-
-        public boolean showdialog(final String note_id) {
-            final Dialog dialog = new Dialog(mContext);
-
-
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setCancelable(true);
-            dialog.setContentView(R.layout.delete_alert);
-            yes = dialog.findViewById(R.id.btn_yes);
-            no = dialog.findViewById(R.id.btn_no);
-
-
-
-            yes.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    FirebaseDatabase mFirebaseInstance = FirebaseDatabase.getInstance();
-                    DatabaseReference mFirebaseDatabase = mFirebaseInstance.getReference("notes");
-                    mFirebaseDatabase.child(note_id).removeValue();
-                    Toast.makeText(mContext,"not silindi",Toast.LENGTH_SHORT).show();
-                    noteList.remove(position);
-                    notifyDataSetChanged();
-                    dialog.dismiss();
-                }
-            });
-
-            no.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                }
-            });
-            dialog.show();
-
-            return false;
-        }
-
 
     }
 
-}
