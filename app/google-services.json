@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:642558046613:android:a131c7adfd18897e",
+        "mobilesdk_app_id": "1:642558046613:android:fb970a27366ab909",
         "android_client_info": {
-          "package_name": "com.example.yube.calymessenger"
+          "package_name": "com.yusuf.yube.mynotes"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "642558046613-l8t64q9v6nfrv6n1upheaepdveh61khq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.yube.calymessenger",
-            "certificate_hash": "343ccd8d0d3bba4f876c58d7b855e3fc3fdd0e36"
-          }
-        },
         {
           "client_id": "642558046613-me0nh62817ltplrr675ig954v6j2fsih.apps.googleusercontent.com",
           "client_type": 3
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "642558046613-me0nh62817ltplrr675ig954v6j2fsih.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

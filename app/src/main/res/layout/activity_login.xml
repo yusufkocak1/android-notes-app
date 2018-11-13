@@ -4,25 +4,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginback"
+    android:background="#222"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:paddingTop="80dp"
         android:layout_marginBottom="100dp"
 
         >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:text="My Notes"
+            android:textSize="28dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_margin="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:elevation="2dp"
+            android:background="@drawable/delete_alert_btn_no"
 
             >
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -30,6 +46,7 @@
                 android:layout_margin="10dp"
                 android:hint="@string/mailET"
                 android:id="@+id/emailET"
+        android:backgroundTint="#222"
                 />
 
             <EditText
@@ -39,7 +56,7 @@
                 android:inputType="textPassword"
                 android:hint="@string/passwordET"
                 android:id="@+id/passwordET"
-
+                android:backgroundTint="#222"
                 />
 
             <LinearLayout
@@ -55,8 +72,8 @@
                     android:layout_marginRight="20dp"
                     android:text="@string/title_activity_signup"
                     android:id="@+id/registerBtn"
-                    android:textColor="#fff"
-                    android:background="#FFEB3B10" />
+                    android:textColor="#222"
+                    android:background="@drawable/delete_alert_btn_no" />
 
                 <Button
                     android:layout_width="80dp"
@@ -66,7 +83,7 @@
                     android:text="@string/loginBTN"
                     android:id="@+id/loginBtn"
                     android:textColor="#fff"
-                    android:background="#FFEB3B10" />
+                    android:background="@drawable/delete_alert_btn_yes" />
             </LinearLayout>
 
         </LinearLayout>

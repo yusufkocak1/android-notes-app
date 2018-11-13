@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.yube.calymessenger">
+    package="com.yusuf.yube.mynotes">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,11 +13,10 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:windowSoftInputMode="stateVisible|adjustResize">
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.yusuf.yube.mynotes.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,12 +24,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.yusuf.yube.mynotes.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.yube.calymessenger.SignupActivity"
+            android:name="com.yusuf.yube.mynotes.SignupActivity"
             android:label="@string/title_activity_signup" />
-        <activity android:name=".ResetPasswordActivity" />
+        <activity android:name="com.yusuf.yube.mynotes.ResetPasswordActivity" />
     </application>
 
 </manifest>

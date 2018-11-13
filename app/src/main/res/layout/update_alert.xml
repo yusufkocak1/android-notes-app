@@ -1,6 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingTop="10dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:gravity="right">
+
+            <TextView
+                android:id="@+id/alertUpdateDateTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="15"
+                android:textColor="#222"
+                android:text="06-11-2018"
+                android:gravity="left"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp" />
+            <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:id="@+id/alertUpdatePasteBTN"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/baseline_flip_to_front_black_18dp"/>
+            <Button
+                android:layout_width="22dp"
+                android:layout_weight="1"
+                android:id="@+id/alertUpdateCopyBTN"
+                android:layout_height="22dp"
+                android:background="@drawable/baseline_file_copy_black_18dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#222"></LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+     >
+
+
+
+        <EditText
+            android:id="@+id/alertUpdateContentET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:lines="8"
+            android:backgroundTint="#222"
+android:paddingTop="-5dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingBottom="5dp">
+
+            <Button
+                android:id="@+id/alertUpdateAddBTN"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/delete_alert_btn_yes"
+                android:text="save"
+                android:textColor="#fff"
+                android:layout_marginRight="5dp"/>
+
+            <Button
+                android:id="@+id/alertUpdateCancelBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/delete_alert_btn_no"
+                android:gravity="center"
+                android:text="cancel"
+                android:textColor="#222" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
