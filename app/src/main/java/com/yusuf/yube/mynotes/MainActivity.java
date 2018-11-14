@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
             //DateFormat.getDateInstance(DateFormat.SHORT).format(date);
 
             FirebaseAuth auth = FirebaseAuth.getInstance();
-            Note note = new Note(noteId,contenttext.getText().toString(), getDate(), "warn", auth.getCurrentUser().getEmail().toString());
+            Note note = new Note(noteId,String.valueOf(contenttext.getText()), getDate(), "warn", auth.getCurrentUser().getEmail());
 
             mFirebaseDatabase.child(noteId).setValue(note);
             return true;
